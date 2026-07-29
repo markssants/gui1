@@ -44,3 +44,31 @@ body {
   background: var(--color-primary);
   border-radius: 10px;
 }
+
+@keyframes gradient-blue-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gradient-purple-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-blue-gradient {
+  background: linear-gradient(90deg, #38bdf8, #2563eb, #60a5fa, #0284c7, #38bdf8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-blue-shift 4s ease infinite;
+}
+
+.animate-purple-gradient {
+  background: linear-gradient(90deg, #c084fc, #7e22ce, #e879f9, #9333ea, #c084fc);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-purple-shift 4s ease infinite;
+}

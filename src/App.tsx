@@ -4,22 +4,23 @@
  */
 
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Play, 
-  Download, 
-  Instagram, 
-  Music, 
-  Calendar, 
-  Image as LucideImage, 
-  Mail, 
-  ArrowRight, 
-  Menu, 
+import {
+  Play,
+  Download,
+  Instagram,
+  Music,
+  Calendar,
+  Image as LucideImage,
+  Mail,
+  ArrowRight,
+  Menu,
   X,
   Plus,
   Activity,
-  AudioLines
+  AudioLines,
+  MessageCircle
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 
 // --- Components ---
 
@@ -35,7 +36,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Biografia', href: '#bio' },
-    { name: 'Agenda', href: '#agenda' },
+    // { name: 'Agenda', href: '#agenda' },
     { name: 'Músicas', href: '#music' },
     { name: 'Galeria', href: '#gallery' },
     { name: 'Identidade', href: '#brand' },
@@ -47,12 +48,12 @@ const Navbar = () => {
       <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 font-headline ${isScrolled ? 'bg-surface/80 backdrop-blur-2xl py-4 shadow-neon-primary/10' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
           <span className="text-2xl font-bold tracking-tighter text-primary">PACHECCO</span>
-          
+
           <div className="hidden md:flex gap-10 items-center">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
+              <a
+                key={link.name}
+                href={link.href}
                 className="text-on-surface/60 hover:text-primary transition-colors uppercase text-xs tracking-widest font-bold"
               >
                 {link.name}
@@ -60,9 +61,9 @@ const Navbar = () => {
             ))}
           </div>
 
-          <button className="bg-gradient-to-r from-primary to-tertiary text-surface font-bold px-8 py-2.5 rounded-xl active:scale-95 duration-200 transition-all font-headline text-sm">
+          <a href="#booking" className="inline-block bg-gradient-to-r from-primary to-tertiary text-surface font-bold px-8 py-2.5 rounded-xl active:scale-95 duration-200 transition-all font-headline text-sm">
             BAIXAR PRESSKIT
-          </button>
+          </a>
         </div>
         <div className="bg-gradient-to-r from-transparent via-primary/20 to-transparent h-[1px] w-full mt-4" />
       </nav>
@@ -77,12 +78,12 @@ const Navbar = () => {
           {[
             { icon: <Plus size={20} />, label: 'Início', href: '#' },
             { icon: <Activity size={20} />, label: 'Músicas', href: '#music' },
-            { icon: <Calendar size={20} />, label: 'Tour', href: '#agenda' },
+            // { icon: <Calendar size={20} />, label: 'Tour', href: '#agenda' },
             { icon: <LucideImage size={20} />, label: 'Mídia', href: '#gallery' },
             { icon: <Music size={20} />, label: 'Brand', href: '#brand' },
             { icon: <Mail size={20} />, label: 'Contato', href: '#booking' },
           ].map((item, i) => (
-            <a 
+            <a
               key={i}
               href={item.href}
               className="flex items-center gap-6 px-6 py-4 text-on-surface/40 hover:text-primary hover:bg-white/5 transition-all"
@@ -103,19 +104,19 @@ const Hero = () => {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-surface">
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <motion.img 
+        <motion.img
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-          className="w-full h-full object-cover opacity-50" 
-          alt="PACHECCO Performing" 
+          className="w-full h-full object-cover opacity-50"
+          alt="PACHECCO Performing"
           src="/regenerated_image_1777430426012.png"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-surface/80"></div>
       </div>
-      
-      <motion.div 
+
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -127,23 +128,23 @@ const Hero = () => {
         <p className="font-headline text-primary mt-8 tracking-[0.4em] uppercase text-sm md:text-xl font-medium">
           Experiência Sonora
         </p>
-        
+
         <div className="mt-12 flex flex-col md:flex-row gap-6 justify-center items-center">
           <div className="liquid-glass p-1 rounded-xl">
-            <button className="px-10 py-5 font-headline font-bold bg-primary text-surface rounded-xl hover:shadow-neon-primary transition-all duration-300 uppercase tracking-widest text-xs">
+            <a href="#music" className="inline-block px-10 py-5 font-headline font-bold bg-primary text-surface rounded-xl hover:shadow-neon-primary transition-all duration-300 uppercase tracking-widest text-xs">
               EXPLORAR SONS
-            </button>
+            </a>
           </div>
-          <button className="text-on-surface border border-white/10 px-10 py-5 rounded-xl hover:bg-white/10 transition-all backdrop-blur-md uppercase font-bold tracking-widest text-xs">
+          <a href="#booking" className="inline-block text-on-surface border border-white/10 px-10 py-5 rounded-xl hover:bg-white/10 transition-all backdrop-blur-md uppercase font-bold tracking-widest text-xs">
             CONTRATAR
-          </button>
+          </a>
         </div>
       </motion.div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
         <span className="text-[10px] uppercase tracking-widest">DESLIZE PARA BAIXO</span>
-        <motion.div 
+        <motion.div
           animate={{ height: [0, 48, 0], opacity: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="w-[1px] bg-gradient-to-b from-primary to-transparent"
@@ -158,23 +159,23 @@ const Bio = () => {
     <section className="py-32 px-8 md:px-24 bg-surface-low relative overflow-hidden" id="bio">
       {/* Decorative Blur */}
       <div className="absolute -top-64 -left-64 w-[600px] h-[600px] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           className="w-full lg:w-1/2 relative"
         >
           <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-tertiary/20 blur-3xl rounded-full" />
-          <img 
-            className="relative z-10 w-full aspect-[4/5] object-cover rounded-3xl shadow-2xl transition-all duration-700 hover:grayscale" 
-            alt="Guilherme Pacheco Portrait" 
+          <img
+            className="relative z-10 w-full aspect-[4/5] object-cover rounded-3xl shadow-2xl transition-all duration-700 hover:grayscale"
+            alt="Guilherme Pacheco Portrait"
             src="/regenerated_image_1777429091530.png"
           />
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -183,32 +184,38 @@ const Bio = () => {
           <div>
             <span className="font-headline text-secondary tracking-[0.3em] uppercase text-xs font-bold block mb-4">Biografia do Artista</span>
             <h2 className="font-headline text-5xl md:text-8xl font-bold leading-none tracking-tighter">
-              Guilherme <br/>
+              Guilherme <br />
               <span className="text-primary italic">Pacheco</span>
             </h2>
           </div>
 
-          <div className="space-y-6 font-body text-on-surface/70 text-lg leading-relaxed max-w-xl">
+          <div className="space-y-6 font-body text-on-surface/80 text-lg leading-relaxed">
             <p>
-              Baseado no coração pulsante do underground eletrônico, PACHECCO é mais do que um DJ — ele é um arquiteto de paisagens sonoras...
-              Com um estilo próprio que funde ritmos hipnóticos profundos com texturas industriais agressivas, seus sets são uma jornada pelo "Sonic Flux".
+              Diretamente de Içara, Santa Catarina, DJ Pachecco é um artista em ascensão que vem construindo sua identidade na cena com elegância e versatilidade. Atuando no formato Open Format, seus sets transitam com naturalidade entre diferentes estilos e épocas, criando experiências dinâmicas que se adaptam ao público e ao momento.
             </p>
             <p>
-              Com mais de uma década de evolução na cena, Guilherme dominou a arte de ler a pista, transformando pistas de dança em espaços comunitários de transcendência. 
+              Mesmo no início de sua trajetória, Pachecco já demonstra sensibilidade musical e leitura de pista, elementos essenciais que garantem apresentações envolventes e bem construídas. Sua proposta é clara: entregar sets sofisticados, com energia equilibrada e uma curadoria musical que valoriza tanto hits quanto descobertas.
             </p>
+
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-10 py-10 border-t border-white/5">
-            {[
-              { val: '120+', label: 'Shows Anuais', color: 'text-primary' },
-              { val: '15', label: 'Países', color: 'text-tertiary' },
-              { val: '1M+', label: 'Streams', color: 'text-secondary' },
-            ].map((stat, i) => (
-              <div key={i}>
-                <p className={`${stat.color} font-headline text-4xl font-bold`}>{stat.val}</p>
-                <p className="text-[10px] uppercase tracking-widest text-on-surface/40 mt-2 font-bold">{stat.label}</p>
+          <div className="space-y-4 pt-6 border-t border-white/5 font-body">
+            <div className="liquid-glass p-5 rounded-2xl border-white/5 space-y-1">
+              <span className="text-xs uppercase tracking-widest text-primary font-bold font-headline block">Estilo Musical</span>
+              <p className="text-on-surface/90 text-sm font-medium">Open Format (versátil e adaptável, explorando diferentes gêneros com fluidez e identidade)</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="liquid-glass p-5 rounded-2xl border-white/5 space-y-1">
+                <span className="text-xs uppercase tracking-widest text-secondary font-bold font-headline block">Experiência</span>
+                <p className="text-on-surface/80 text-xs leading-relaxed">Apresentações em eventos e festas particulares. Construção de repertório dinâmico e leitura de pista.</p>
               </div>
-            ))}
+
+              <div className="liquid-glass p-5 rounded-2xl border-white/5 space-y-1">
+                <span className="text-xs uppercase tracking-widest text-tertiary font-bold font-headline block">Identidade Artística</span>
+                <p className="text-on-surface/80 text-xs leading-relaxed">Sets elegantes, versáteis e focados na experiência do público, equilibrando energia, ritmo e musicalidade.</p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
@@ -224,7 +231,7 @@ const Agenda = () => {
   ];
 
   return (
-    <section className="py-32 px-8 md:px-24 bg-surface" id="agenda">
+    <section className="hidden py-32 px-8 md:px-24 bg-surface" id="agenda">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
           <div>
@@ -239,7 +246,7 @@ const Agenda = () => {
         <div className="liquid-glass rounded-[40px] overflow-hidden shadow-2xl border-white/5">
           <div className="divide-y divide-white/5">
             {events.map((event, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -255,11 +262,10 @@ const Agenda = () => {
                   <p className="text-on-surface/50 font-medium tracking-wide">{event.location}</p>
                 </div>
                 <div className="flex md:justify-end mt-6 md:mt-0">
-                  <button className={`px-8 py-3 rounded-xl border font-headline font-bold text-[10px] uppercase tracking-[0.2em] transition-all duration-300 ${
-                    event.status === 'soldout' 
-                      ? 'border-white/10 text-on-surface/30 cursor-not-allowed' 
-                      : `border-${event.color.split('-')[1]}/30 ${event.color} group-hover:bg-${event.color.split('-')[1]} group-hover:text-surface`
-                  }`}>
+                  <button className={`px-8 py-3 rounded-xl border font-headline font-bold text-[10px] uppercase tracking-[0.2em] transition-all duration-300 ${event.status === 'soldout'
+                    ? 'border-white/10 text-on-surface/30 cursor-not-allowed'
+                    : `border-${event.color.split('-')[1]}/30 ${event.color} group-hover:bg-${event.color.split('-')[1]} group-hover:text-surface`
+                    }`}>
                     {event.status === 'soldout' ? 'Esgotado' : 'Garantir Ingresso'}
                   </button>
                 </div>
@@ -283,7 +289,7 @@ const MusicSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Main Player Mix */}
-          <motion.div 
+          <motion.div
             whileHover={{ y: -5 }}
             className="liquid-glass p-10 rounded-[40px] border-primary/10 group"
           >
@@ -296,11 +302,11 @@ const MusicSection = () => {
                 <p className="text-xs text-on-surface/40 font-bold tracking-widest mt-1">SET EXCLUSIVO SOUNDCLOUD</p>
               </div>
             </div>
-            
+
             <div className="relative aspect-video bg-surface-high rounded-3xl flex items-center justify-center overflow-hidden border border-white/5">
               <div className="flex items-end gap-1.5 h-32 px-10">
                 {[...Array(20)].map((_, i) => (
-                  <motion.div 
+                  <motion.div
                     key={i}
                     animate={{ height: [`${Math.random() * 100}%`, `${Math.random() * 100}%`] }}
                     transition={{ duration: 0.5, repeat: Infinity, repeatType: "mirror" }}
@@ -323,7 +329,7 @@ const MusicSection = () => {
               { title: 'Obsidian Ghost', year: '2023', color: 'from-tertiary to-secondary', image: '/regenerated_image_1777430732778.png' },
               { title: 'Cyber Ritual', year: '2024', color: 'from-secondary to-primary', image: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=400' },
             ].map((track, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 whileHover={{ x: 10 }}
                 className="flex items-center gap-8 p-6 liquid-glass rounded-3xl cursor-pointer group"
@@ -356,7 +362,7 @@ const Gallery = () => {
             Galeria <span className="text-tertiary italic">Visual</span>
           </h2>
           <p className="text-on-surface/40 max-w-sm uppercase text-[10px] tracking-widest leading-loose font-bold">
-            Capture a energia da pista. Uma coleção de momentos da turnê mundial.
+            Galeria de fotos e material visual oficial.
           </p>
         </div>
 
@@ -372,17 +378,22 @@ const Gallery = () => {
           <div className="relative group overflow-hidden rounded-[40px]">
             <img className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" src="/regenerated_image_1777430531280.png" alt="Tour Photo" />
           </div>
-          <div className="relative group overflow-hidden rounded-[40px] bg-surface-high flex items-center justify-center border border-white/5 p-8 text-center cursor-pointer">
-            <img 
-              className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-500" 
-              src="/regenerated_image_1777430635864.png" 
-              alt="Background" 
+          <a
+            href="https://www.instagram.com/eu_guilherme_.p"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative group overflow-hidden rounded-[40px] bg-surface-high flex items-center justify-center border border-white/5 p-8 text-center cursor-pointer"
+          >
+            <img
+              className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+              src="/regenerated_image_1777430635864.png"
+              alt="Background"
             />
-             <div className="relative z-10 flex flex-col items-center gap-4">
-                <Plus size={40} className="text-primary" />
-                <span className="font-headline font-bold text-sm tracking-widest uppercase">Ver Tudo</span>
-             </div>
-          </div>
+            <div className="relative z-10 flex flex-col items-center gap-4">
+              <Plus size={40} className="text-primary" />
+              <span className="font-headline font-bold text-sm tracking-widest uppercase">Ver Tudo</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -393,7 +404,7 @@ const VisualIdentity = () => {
   return (
     <section className="py-32 px-8 md:px-24 bg-surface-low border-y border-white/5" id="brand">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -421,7 +432,7 @@ const VisualIdentity = () => {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -440,17 +451,29 @@ const VisualIdentity = () => {
 };
 
 const Contact = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const phone = '5548988678273';
+    const text = `Olá! Gostaria de entrar em contato através do site.\n\n*Nome:* ${name}\n*E-mail:* ${email}\n*Mensagem:* ${message}`;
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <section className="py-32 px-8 md:px-24 bg-surface relative overflow-hidden" id="booking">
       {/* Decorative Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/5 blur-[200px] rounded-full pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <div className="space-y-12">
             <div>
               <h2 className="font-headline text-6xl md:text-8xl font-bold leading-none tracking-tighter mb-8">
-                Vamos <br/>
+                Vamos <br />
                 <span className="text-primary">Conectar</span>
               </h2>
               <p className="text-on-surface/50 text-xl font-medium max-w-md">Para agendamentos, pedidos de remix ou contatos gerais. Entre no fluxo.</p>
@@ -468,26 +491,51 @@ const Contact = () => {
             </div>
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="liquid-glass p-12 rounded-[50px] border-white/5 shadow-2xl"
           >
-            <form className="space-y-10">
+            <form onSubmit={handleSubmit} className="space-y-10">
               <div className="space-y-3">
                 <label className="text-[10px] uppercase tracking-[0.2em] text-on-surface/30 font-bold">Nome Completo</label>
-                <input className="w-full bg-transparent border-b border-white/10 focus:border-primary focus:ring-0 transition-all text-on-surface pb-4 text-lg outline-none" placeholder="Seu Nome" type="text" />
+                <input
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full bg-transparent border-b border-white/10 focus:border-primary focus:ring-0 transition-all text-on-surface pb-4 text-lg outline-none"
+                  placeholder="Seu Nome"
+                  type="text"
+                />
               </div>
               <div className="space-y-3">
                 <label className="text-[10px] uppercase tracking-[0.2em] text-on-surface/30 font-bold">E-mail de Contato</label>
-                <input className="w-full bg-transparent border-b border-white/10 focus:border-primary focus:ring-0 transition-all text-on-surface pb-4 text-lg outline-none" placeholder="email@exemplo.com" type="email" />
+                <input
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-transparent border-b border-white/10 focus:border-primary focus:ring-0 transition-all text-on-surface pb-4 text-lg outline-none"
+                  placeholder="email@exemplo.com"
+                  type="email"
+                />
               </div>
               <div className="space-y-3">
                 <label className="text-[10px] uppercase tracking-[0.2em] text-on-surface/30 font-bold">Sua Mensagem</label>
-                <textarea className="w-full bg-transparent border-b border-white/10 focus:border-primary focus:ring-0 transition-all text-on-surface pb-4 text-lg outline-none resize-none" placeholder="O que você tem em mente?" rows={3} />
+                <textarea
+                  required
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="w-full bg-transparent border-b border-white/10 focus:border-primary focus:ring-0 transition-all text-on-surface pb-4 text-lg outline-none resize-none"
+                  placeholder="O que você tem em mente?"
+                  rows={3}
+                />
               </div>
-              <button className="w-full bg-gradient-to-r from-primary to-tertiary text-surface font-headline font-bold py-6 rounded-2xl hover:opacity-90 transition-all active:scale-[0.98] uppercase tracking-[0.2em] text-xs">
-                ENVIAR MENSAGEM
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-primary to-tertiary text-surface font-headline font-bold py-6 rounded-2xl hover:opacity-90 transition-all active:scale-[0.98] uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3"
+              >
+                <MessageCircle size={18} />
+                ENVIAR VIA WHATSAPP
               </button>
             </form>
           </motion.div>
@@ -499,31 +547,47 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-surface py-20 px-8 border-t border-white/5 relative z-10">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-        <div className="space-y-4 text-center md:text-left">
+    <footer className="bg-surface border-t border-white/5 relative z-10">
+      <div className="max-w-7xl mx-auto py-16 px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="space-y-2 text-center md:text-left">
           <span className="text-3xl font-bold tracking-tighter text-primary font-headline uppercase">PACHECCO</span>
-          <p className="font-body text-[10px] tracking-[0.3em] uppercase text-on-surface/20 font-bold">
-            © {new Date().getFullYear()} PACHECCO. TODOS OS DIREITOS RESERVADOS.
-          </p>
         </div>
         <div className="flex flex-wrap justify-center gap-10">
           {[
-            { name: 'Instagram', icon: <Instagram size={16} /> },
-            { name: 'SoundCloud', icon: <Music size={16} /> },
-            { name: 'Spotify', icon: <Music size={16} /> },
-            { name: 'Resident Advisor', icon: <AudioLines size={16} /> },
+            { name: 'Instagram', icon: <Instagram size={16} />, href: 'https://www.instagram.com/eu_guilherme_.p' },
+            { name: 'SoundCloud', icon: <Music size={16} />, href: '#' },
+            { name: 'E-mail', icon: <Mail size={16} />, href: 'mailto:guilhermealepacheco@gmail.com' },
+            { name: 'WhatsApp', icon: <MessageCircle size={16} />, href: 'https://wa.me/5548988678273' },
           ].map((social) => (
-            <a 
-              key={social.name} 
-              href="#" 
-              className="flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase text-on-surface/30 hover:text-primary transition-all font-bold"
+            <a
+              key={social.name}
+              href={social.href}
+              target={social.href.startsWith('http') ? '_blank' : undefined}
+              rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase text-on-surface/40 hover:text-primary transition-all font-bold"
             >
               {social.icon}
               {social.name}
             </a>
           ))}
         </div>
+      </div>
+
+      {/* Seção Separada de Créditos */}
+      <div className="py-6 px-8 bg-surface-low border-t border-white/5 text-center flex justify-center items-center">
+        <p className="font-body text-base md:text-lg tracking-wider uppercase text-on-surface/70 font-semibold flex flex-wrap items-center justify-center gap-2">
+          <span>🚀 Desenvolvido por</span>
+          <a
+            href="https://www.instagram.com/markbeys/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center hover:scale-105 transition-transform font-bold"
+          >
+            <span className="animate-blue-gradient">Marks</span>
+            <span className="animate-purple-gradient">Beys</span>
+          </a>
+          <span>🎨 | 1.1</span>
+        </p>
       </div>
     </footer>
   );
@@ -535,19 +599,19 @@ export default function App() {
       <Navbar />
       <Hero />
       <Bio />
-      <Agenda />
+      {/* <Agenda /> */}
       <MusicSection />
       <Gallery />
       <VisualIdentity />
       <Contact />
       <Footer />
-      
+
       {/* Mobile Nav Mockup (Hidden on LG) */}
       <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] liquid-glass px-8 py-4 rounded-full flex gap-10 items-center border border-primary/20 shadow-neon-primary/20">
-         <a href="#" className="text-primary"><Plus size={24} /></a>
-         <a href="#music" className="text-on-surface/40"><Activity size={24} /></a>
-         <a href="#agenda" className="text-on-surface/40"><Calendar size={24} /></a>
-         <a href="#booking" className="text-on-surface/40"><Mail size={24} /></a>
+        <a href="#" className="text-primary"><Plus size={24} /></a>
+        <a href="#music" className="text-on-surface/40"><Activity size={24} /></a>
+        {/* <a href="#agenda" className="text-on-surface/40"><Calendar size={24} /></a> */}
+        <a href="#booking" className="text-on-surface/40"><Mail size={24} /></a>
       </div>
     </main>
   );
