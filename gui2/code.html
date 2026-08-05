@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#001649",
+                      "surface-container-lowest": "#000000",
+                      "secondary": "#e46aff",
+                      "error-dim": "#d7383b",
+                      "surface": "#0e0e10",
+                      "on-secondary": "#3c004a",
+                      "on-tertiary-fixed": "#001444",
+                      "on-surface-variant": "#adaaad",
+                      "inverse-on-surface": "#565457",
+                      "inverse-surface": "#fcf8fb",
+                      "on-secondary-fixed": "#5c0070",
+                      "tertiary": "#84a2ff",
+                      "surface-container-low": "#131316",
+                      "inverse-primary": "#00687f",
+                      "surface-container-high": "#1f1f22",
+                      "on-primary-fixed-variant": "#004c5e",
+                      "surface-variant": "#262529",
+                      "tertiary-fixed-dim": "#809fff",
+                      "tertiary-container": "#7294fa",
+                      "on-primary-container": "#004253",
+                      "on-tertiary": "#002266",
+                      "error": "#ff716c",
+                      "surface-tint": "#72dcff",
+                      "on-background": "#fffbfe",
+                      "on-tertiary-fixed-variant": "#00318c",
+                      "background": "#0e0e10",
+                      "on-primary": "#004c5e",
+                      "on-surface": "#fffbfe",
+                      "on-secondary-container": "#fff5fb",
+                      "secondary-fixed-dim": "#f4a9ff",
+                      "on-error": "#490006",
+                      "secondary-container": "#9f00c1",
+                      "secondary-fixed": "#f9beff",
+                      "surface-dim": "#0e0e10",
+                      "on-primary-fixed": "#002c38",
+                      "surface-container": "#19191c",
+                      "primary": "#72dcff",
+                      "secondary-dim": "#c300eb",
+                      "on-secondary-fixed-variant": "#8900a7",
+                      "surface-bright": "#2c2c2f",
+                      "primary-dim": "#00c3ed",
+                      "primary-container": "#00d2ff",
+                      "outline": "#767578",
+                      "error-container": "#9f0519",
+                      "tertiary-fixed": "#94aeff",
+                      "tertiary-dim": "#7899ff",
+                      "on-error-container": "#ffa8a3",
+                      "primary-fixed-dim": "#00c3ed",
+                      "primary-fixed": "#00d2ff",
+                      "surface-container-highest": "#262529",
+                      "outline-variant": "#48474a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0px",
+                      "lg": "0px",
+                      "xl": "0px",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Space Grotesk"],
+                      "body": ["Manrope"],
+                      "label": ["Space Grotesk"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass {
+            background: rgba(38, 37, 41, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+        .neon-border-primary {
+            box-shadow: 0 0 15px rgba(114, 220, 255, 0.3);
+        }
+        .neon-text-primary {
+            text-shadow: 0 0 10px rgba(114, 220, 255, 0.8);
+        }
+        body {
+            background-color: #0e0e10;
+            color: #fffbfe;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-zinc-950/40 backdrop-blur-3xl border-b-2 border-cyan-400/20 flex justify-between items-center px-8 h-20 shadow-[0_4px_30px_rgba(0,210,255,0.1)]">
+<div class="text-2xl font-black tracking-tighter text-cyan-400 drop-shadow-[0_0_10px_rgba(114,220,255,0.5)] font-headline uppercase">PACHECCO</div>
+<div class="hidden md:flex gap-10 font-['Space_Grotesk'] uppercase tracking-[0.2em] font-bold">
+<a class="text-zinc-500 hover:text-cyan-200 transition-colors hover:skew-x-[-10deg]" href="#tour">Tour</a>
+<a class="text-zinc-500 hover:text-cyan-200 transition-colors hover:skew-x-[-10deg]" href="#music">Músicas</a>
+<a class="text-zinc-500 hover:text-cyan-200 transition-colors hover:skew-x-[-10deg]" href="#gallery">Galeria</a>
+<a class="text-cyan-400 border-b-2 border-cyan-400 pb-1 hover:skew-x-[-10deg]" href="#epk">EPK</a>
+<a class="text-zinc-500 hover:text-cyan-200 transition-colors hover:skew-x-[-10deg]" href="#booking">Contratar</a>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed px-6 py-2 font-bold uppercase tracking-widest hover:scale-105 transition-transform active:scale-95">Press Kit</button>
+</nav>
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-0 h-screen hidden lg:flex flex-col items-center py-8 w-20 border-r border-cyan-400/10 bg-zinc-950 z-40">
+<div class="mb-12 flex flex-col items-center">
+<span class="text-cyan-400 font-black text-xl font-headline tracking-tighter">P.</span>
+</div>
+<div class="flex flex-col gap-8 flex-grow">
+<div class="group flex flex-col items-center gap-1 cursor-pointer transition-all duration-200 hover:text-cyan-400">
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-cyan-400">person</span>
+<span class="font-['Space_Grotesk'] text-[8px] font-bold uppercase tracking-widest text-zinc-600 group-hover:text-cyan-400">Bio</span>
+</div>
+<div class="group flex flex-col items-center gap-1 cursor-pointer transition-all duration-200 hover:text-cyan-400">
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-cyan-400">event</span>
+<span class="font-['Space_Grotesk'] text-[8px] font-bold uppercase tracking-widest text-zinc-600 group-hover:text-cyan-400">Tour</span>
+</div>
+<div class="group flex flex-col items-center gap-1 cursor-pointer transition-all duration-200 hover:text-cyan-400">
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-cyan-400">graphic_eq</span>
+<span class="font-['Space_Grotesk'] text-[8px] font-bold uppercase tracking-widest text-zinc-600 group-hover:text-cyan-400">Músicas</span>
+</div>
+<div class="group flex flex-col items-center gap-1 cursor-pointer transition-all duration-200 hover:text-cyan-400">
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-cyan-400">photo_library</span>
+<span class="font-['Space_Grotesk'] text-[8px] font-bold uppercase tracking-widest text-zinc-600 group-hover:text-cyan-400">Galeria</span>
+</div>
+<div class="group flex flex-col items-center gap-1 cursor-pointer transition-all duration-200 hover:text-cyan-400">
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-cyan-400">download</span>
+<span class="font-['Space_Grotesk'] text-[8px] font-bold uppercase tracking-widest text-zinc-600 group-hover:text-cyan-400">Arquivos</span>
+</div>
+</div>
+<div class="mt-auto">
+<span class="material-symbols-outlined text-zinc-800">fingerprint</span>
+</div>
+</aside>
+<main class="lg:ml-20">
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="PACHECCO DJ Set Live" class="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0uhvrZh2OtQtXOhfeTQBLgR6zb_aGSMkGZF8114RziXp8CkMA3LYPgAw7psfpcFbqk_ssbo2dJX3cSMPMK5LoqnNzdHipZD-agbHJY2JuR37n4XtyW4Cm6tdcPfFFy94z-5z2w8p0FRlZ9Aqk_sacFXD9Mjt5y2ct79kKImNWMoS0-5EsibrTRK2TisLnr6oIiZOZeTDvXvZ-ntDmvpMS3-ORE8eaNxT9HtC_QYBby4KEcy9DKfxLH604OKc3ha7qJOKT9rVDnDbOQ"/>
+<div class="absolute inset-0 bg-gradient-to-b from-background/20 via-background/60 to-background"></div>
+</div>
+<div class="relative z-10 text-center px-4">
+<div class="mb-4 inline-block px-4 py-1 bg-primary/10 border-l-4 border-primary">
+<span class="text-primary font-headline uppercase tracking-[0.4em] text-sm font-bold">GUILHERME PACHECO APRESENTA</span>
+</div>
+<h1 class="text-[12vw] md:text-[10rem] font-black uppercase tracking-tighter leading-none neon-text-primary text-primary-container font-headline">PACHECCO</h1>
+<div class="mt-8 flex flex-col md:flex-row items-center justify-center gap-12">
+<div class="flex flex-col items-center">
+<span class="text-zinc-500 font-label text-xs tracking-widest uppercase mb-2">Frequência Primária</span>
+<span class="text-secondary font-headline text-3xl font-bold">128 BPM</span>
+</div>
+<div class="h-24 w-[2px] bg-gradient-to-b from-transparent via-primary to-transparent hidden md:block"></div>
+<div class="flex flex-col items-center">
+<span class="text-zinc-500 font-label text-xs tracking-widest uppercase mb-2">Identidade Sonora</span>
+<span class="text-tertiary font-headline text-3xl font-bold">INDUSTRIAL</span>
+</div>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
+<span class="font-label text-[10px] tracking-[0.3em] uppercase text-zinc-500">Inicialização do Sistema</span>
+<div class="w-[1px] h-16 bg-gradient-to-b from-primary to-transparent"></div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-32 px-8 md:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center" id="bio">
+<div class="lg:col-span-5 relative order-2 lg:order-1">
+<div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-secondary/40"></div>
+<img alt="Retrato de Guilherme Pacheco (PACHECCO)" class="w-full grayscale border border-white/5" src="https://lh3.googleusercontent.com/aida/ADBb0ugyHgyJYt9FHqkVrMUgk8-ZMF6jv6qdW9t__WW_xvRkDgZPfmXsiX5WKEJS-6l8zuDZDVKFiH4Bef2-Sldv0mmGWSFdsARsw21mAyK2WJhVnVVYqrwuZ1HO7JRUiQHLO0qZOqXR8s0fBvcyyatCWdym5axtzlDXRpYD-XOzrR8Ri2JU96tJTcK2uFbzJ59DnR_jEIdyWveijEkZMGmFvYAEhS-inprsxEktAimu_iqZ_63gPLXR3DLc-OEiXfbkMxdliEu8_1_h6w"/>
+<div class="absolute -bottom-4 -right-4 w-32 h-32 border-b-2 border-r-2 border-primary/40"></div>
+</div>
+<div class="lg:col-span-7 order-1 lg:order-2">
+<h2 class="text-5xl md:text-7xl font-black font-headline uppercase tracking-tight mb-8 leading-none">
+                    O <span class="text-primary italic">Arquiteto</span> Sonoro
+                </h2>
+<div class="space-y-6 text-zinc-400 text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+<p>Guilherme Pacheco, operando sob o pseudônimo <strong class="text-on-surface">PACHECCO</strong>, não é meramente um seletor. Ele é um engenheiro estrutural do som, projetando espaços temporais onde a percussão pesada encontra a síntese clínica.</p>
+<p>Emergindo das paisagens de concreto do underground, seus sets são plantas meticulosamente elaboradas de intensidade. Com foco em arranjos hipnóticos e texturas industriais, PACHECCO redefiniu a geometria acústica do techno moderno.</p>
+</div>
+<div class="mt-12 flex items-center gap-8 border-t border-white/10 pt-12">
+<div>
+<div class="text-primary font-headline text-4xl font-bold">10+</div>
+<div class="text-zinc-500 uppercase text-[10px] tracking-widest">Cidades Globais</div>
+</div>
+<div>
+<div class="text-secondary font-headline text-4xl font-bold">150K</div>
+<div class="text-zinc-500 uppercase text-[10px] tracking-widest">Streams Semanais</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Wide Divider -->
+<section class="h-[409px] relative overflow-hidden group">
+<img alt="Visual imersivo de palco PACHECCO" class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[3000ms]" src="https://lh3.googleusercontent.com/aida/ADBb0uhHZAwEiOFLhomV0L4t-v_JidMH5HGIuq89pF4sNH128nFRWohkztEdo4F-1vLIzLn11P7K7aB4W9F3ZyZjrITv5grTIisZPkYfuOXfA5zepwWCmCP8WPlF1-MwJ91rU_cEqdaSzJtK5Ood6nPI7OmvV2BT7uR3WhTvwr9D5vAcbaZ4Ahz4lbK8lUHWMvKCmZF2Iay0S6C_KQNH71fgx6IgbRHB1O39EJrDpiP2jdDVgOWQ21HYjYKXIeXwJ7w5IeGTubE4Z_RL2g"/>
+<div class="absolute inset-0 bg-background/60 backdrop-blur-sm"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="text-center">
+<div class="text-primary text-[6vw] font-black font-headline opacity-20 tracking-[0.5em] select-none">TRANSCENDÊNCIA ATRAVÉS DO RUÍDO</div>
+</div>
+</div>
+</section>
+<!-- Agenda Section -->
+<section class="py-32 px-8 md:px-20 bg-surface-container-low" id="tour">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+<div>
+<h2 class="text-zinc-600 font-label uppercase tracking-[0.4em] text-xs mb-4">// LOG DE DEPLOYMENT</h2>
+<h3 class="text-5xl md:text-7xl font-black font-headline uppercase tracking-tight">AGENDA</h3>
+</div>
+<div class="text-right">
+<span class="text-primary font-mono text-sm">[ STATUS: ATIVO ]</span>
+</div>
+</div>
+<div class="border-t border-white/5">
+<!-- Tour Row -->
+<div class="group grid grid-cols-1 md:grid-cols-4 py-8 border-b border-white/5 items-center hover:bg-surface-container-high transition-colors px-4">
+<div class="text-zinc-500 font-headline font-bold text-xl uppercase">24.OUT.2024</div>
+<div class="text-2xl font-bold uppercase font-headline group-hover:text-primary transition-colors">BERLIM, DE</div>
+<div class="text-zinc-400 font-body italic">TRESOR CLUB</div>
+<div class="flex justify-end">
+<button class="border border-outline-variant px-6 py-2 text-xs uppercase tracking-widest hover:bg-primary hover:text-black hover:border-primary transition-all">Ingressos</button>
+</div>
+</div>
+<!-- Tour Row -->
+<div class="group grid grid-cols-1 md:grid-cols-4 py-8 border-b border-white/5 items-center hover:bg-surface-container-high transition-colors px-4">
+<div class="text-zinc-500 font-headline font-bold text-xl uppercase">02.NOV.2024</div>
+<div class="text-2xl font-bold uppercase font-headline group-hover:text-primary transition-colors">AMSTERDÃ, NL</div>
+<div class="text-zinc-400 font-body italic">ADE SPECIAL - LOFI</div>
+<div class="flex justify-end">
+<button class="border border-outline-variant px-6 py-2 text-xs uppercase tracking-widest hover:bg-primary hover:text-black hover:border-primary transition-all">Ingressos</button>
+</div>
+</div>
+<!-- Tour Row -->
+<div class="group grid grid-cols-1 md:grid-cols-4 py-8 border-b border-white/5 items-center hover:bg-surface-container-high transition-colors px-4">
+<div class="text-zinc-500 font-headline font-bold text-xl uppercase">15.NOV.2024</div>
+<div class="text-2xl font-bold uppercase font-headline group-hover:text-primary transition-colors">LONDRES, UK</div>
+<div class="text-zinc-400 font-body italic">FABRIC</div>
+<div class="flex justify-end">
+<span class="text-error uppercase tracking-widest text-[10px] font-bold py-2">ESGOTADO</span>
+</div>
+</div>
+<!-- Tour Row -->
+<div class="group grid grid-cols-1 md:grid-cols-4 py-8 border-b border-white/5 items-center hover:bg-surface-container-high transition-colors px-4">
+<div class="text-zinc-500 font-headline font-bold text-xl uppercase">05.DEZ.2024</div>
+<div class="text-2xl font-bold uppercase font-headline group-hover:text-primary transition-colors">SÃO PAULO, BR</div>
+<div class="text-zinc-400 font-body italic">D-EDGE</div>
+<div class="flex justify-end">
+<button class="border border-outline-variant px-6 py-2 text-xs uppercase tracking-widest hover:bg-primary hover:text-black hover:border-primary transition-all">Ingressos</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Music Section -->
+<section class="py-32 px-8 md:px-20 relative" id="music">
+<div class="mb-16">
+<h3 class="text-4xl md:text-6xl font-black font-headline uppercase mb-4">ÚLTIMAS TRANSMISSÕES</h3>
+<p class="text-zinc-500 font-label tracking-widest uppercase">Stream de sinais modulados em alta fidelidade</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Track 1 -->
+<div class="glass p-8 border-l-4 border-primary flex gap-6 items-center">
+<div class="w-32 h-32 bg-zinc-900 border border-white/10 flex-shrink-0 relative group">
+<img alt="Arte de lançamento" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida/ADBb0ugM_fujyTNGwThy2wrBzEtM_I3cZBEvgul-EiWrStY4_25QBALianF00oe6a5TBfvhuabVTq-fNvNmPuMuRWFwzaTkUjTb6F7URJA77E-Yi1SXNA-sYcBaPrjD8lL6msCkb0QbuFvu7vqLlG3nxOuEFCFQwFBv5kzTULrrSJ2Q9EHINd7dPzc4r2KsonTcscGdlFAT6kTrb5jC-Kw8grdRiGGnp9mMrG88G3HbCJdxWDJ_uiUZ5iuq5c8uckJ4ueYJzZFZ0nIP0jA"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="text-xs text-primary font-label uppercase tracking-widest mb-1">Lançamento Single</div>
+<h4 class="text-2xl font-headline font-bold uppercase mb-4">CYBERNETIC_SOUL</h4>
+<div class="w-full h-8 bg-zinc-950 flex items-end gap-[2px] px-2 py-1">
+<div class="w-full h-3 bg-primary/20"></div>
+<div class="w-full h-5 bg-primary/40"></div>
+<div class="w-full h-2 bg-primary/10"></div>
+<div class="w-full h-6 bg-primary/60"></div>
+<div class="w-full h-4 bg-primary/30"></div>
+<div class="w-full h-7 bg-primary"></div>
+<div class="w-full h-3 bg-primary/20"></div>
+<div class="w-full h-5 bg-primary/40"></div>
+<div class="w-full h-8 bg-primary"></div>
+<div class="w-full h-2 bg-primary/10"></div>
+</div>
+</div>
+</div>
+<!-- Track 2 -->
+<div class="glass p-8 border-l-4 border-secondary flex gap-6 items-center">
+<div class="w-32 h-32 bg-zinc-900 border border-white/10 flex-shrink-0 relative group">
+<img alt="Arte de lançamento" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida/ADBb0uhCTj16XFkfDM9-z6QHXAySdN1x8QLedjBrRJQGEsSa8yzwwe_fBsHvXafFnjpFOGg14Zbmx5_PDLfgIZ3Pe6CPbNbWSapt0_fCmcTb0qwGtcA8eZJkEal3mH816bdN20_1ZrMDHCHSJNrNcCiKBvofmGMc2O9k9CNBgma_lkv2KEcaMandzxWo2bDEyl4na7Hgk-xEq1F_aj48RZr6odST8RUb74yIISYiai6VpH1qrK4lZBzF1hkVSYrk3n7W4UErY9DJUKmR5g"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-secondary" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="text-xs text-secondary font-label uppercase tracking-widest mb-1">Lançamento EP</div>
+<h4 class="text-2xl font-headline font-bold uppercase mb-4">KINETIC_FLOW</h4>
+<div class="w-full h-8 bg-zinc-950 flex items-end gap-[2px] px-2 py-1">
+<div class="w-full h-2 bg-secondary/10"></div>
+<div class="w-full h-6 bg-secondary/60"></div>
+<div class="w-full h-4 bg-secondary/30"></div>
+<div class="w-full h-7 bg-secondary"></div>
+<div class="w-full h-3 bg-secondary/20"></div>
+<div class="w-full h-5 bg-secondary/40"></div>
+<div class="w-full h-8 bg-secondary"></div>
+<div class="w-full h-3 bg-secondary/20"></div>
+<div class="w-full h-5 bg-secondary/40"></div>
+<div class="w-full h-2 bg-secondary/10"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Section -->
+<section class="py-32 px-4 md:px-12 bg-surface-container-lowest" id="gallery">
+<div class="text-center mb-16">
+<h3 class="text-5xl md:text-7xl font-black font-headline uppercase tracking-tight inline-block relative">
+                    GALERIA
+                    <div class="absolute -right-12 top-0 h-1 w-24 bg-primary neon-border-primary"></div>
+</h3>
+</div>
+<div class="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4"><div class="break-inside-avoid relative group overflow-hidden border border-white/10">
+<img alt="Live @ Time Warp" class="w-full hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ugM_fujyTNGwThy2wrBzEtM_I3cZBEvgul-EiWrStY4_25QBALianF00oe6a5TBfvhuabVTq-fNvNmPuMuRWFwzaTkUjTb6F7URJA77E-Yi1SXNA-sYcBaPrjD8lL6msCkb0QbuFvu7vqLlG3nxOuEFCFQwFBv5kzTULrrSJ2Q9EHINd7dPzc4r2KsonTcscGdlFAT6kTrb5jC-Kw8grdRiGGnp9mMrG88G3HbCJdxWDJ_uiUZ5iuq5c8uckJ4ueYJzZFZ0nIP0jA"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<span class="text-white font-label text-[10px] tracking-widest uppercase">Live @ Time Warp</span>
+</div>
+</div>
+<div class="break-inside-avoid relative group overflow-hidden border border-white/10">
+<img alt="Studio Sessions 2024" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uhvrZh2OtQtXOhfeTQBLgR6zb_aGSMkGZF8114RziXp8CkMA3LYPgAw7psfpcFbqk_ssbo2dJX3cSMPMK5LoqnNzdHipZD-agbHJY2JuR37n4XtyW4Cm6tdcPfFFy94z-5z2w8p0FRlZ9Aqk_sacFXD9Mjt5y2ct79kKImNWMoS0-5EsibrTRK2TisLnr6oIiZOZeTDvXvZ-ntDmvpMS3-ORE8eaNxT9HtC_QYBby4KEcy9DKfxLH604OKc3ha7qJOKT9rVDnDbOQ"/>
+<div class="absolute inset-0 bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<span class="text-white font-label text-[10px] tracking-widest uppercase">Studio Sessions 2024</span>
+</div>
+</div>
+<div class="break-inside-avoid relative group overflow-hidden border border-white/10">
+<img alt="Warehouse Set" class="w-full hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0uhCTj16XFkfDM9-z6QHXAySdN1x8QLedjBrRJQGEsSa8yzwwe_fBsHvXafFnjpFOGg14Zbmx5_PDLfgIZ3Pe6CPbNbWSapt0_fCmcTb0qwGtcA8eZJkEal3mH816bdN20_1ZrMDHCHSJNrNcCiKBvofmGMc2O9k9CNBgma_lkv2KEcaMandzxWo2bDEyl4na7Hgk-xEq1F_aj48RZr6odST8RUb74yIISYiai6VpH1qrK4lZBzF1hkVSYrk3n7W4UErY9DJUKmR5g"/>
+<div class="absolute inset-0 bg-tertiary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<span class="text-white font-label text-[10px] tracking-widest uppercase">Warehouse Set</span>
+</div>
+</div></div>
+</section>
+<!-- Identity System Section -->
+<section class="py-32 px-8 md:px-20 border-t border-white/5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div>
+<h2 class="text-4xl md:text-5xl font-black font-headline uppercase mb-8">SISTEMA DE IDENTIDADE</h2>
+<p class="text-zinc-500 font-body mb-12 max-w-md">A estética visual de PACHECCO é construída sobre brutalidade de alto contraste e precisão cromática.</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary"></div>
+<div>
+<div class="text-sm font-bold font-headline uppercase">Electric Blue</div>
+<div class="text-xs text-zinc-600">PRIMÁRIA // #72DCFF</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary"></div>
+<div>
+<div class="text-sm font-bold font-headline uppercase">Neon Purple</div>
+<div class="text-xs text-zinc-600">ACENTO // #E46AFF</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest"></div>
+<div>
+<div class="text-sm font-bold font-headline uppercase">Void Black</div>
+<div class="text-xs text-zinc-600">BASE // #0E0E10</div>
+</div>
+</div>
+</div>
+</div>
+<div class="glass p-12 flex flex-col items-center justify-center border border-white/10 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full"></div>
+<div class="text-7xl font-black font-headline uppercase tracking-tighter text-white mb-2">PACHECCO</div>
+<div class="text-primary font-mono text-[10px] tracking-[0.5em] mb-12">OFFICIAL_BRAND_ASSET_01</div>
+<div class="text-4xl font-light font-headline uppercase tracking-[0.3em] text-white/40">PACHECCO</div>
+</div>
+</div>
+</section>
+<!-- Downloads & EPK Section -->
+<section class="py-32 px-8 md:px-20 bg-primary/5 relative" id="epk">
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary text-6xl mb-6">download</span>
+<h2 class="text-5xl md:text-7xl font-black font-headline uppercase mb-8">PRESS KIT DIGITAL</h2>
+<p class="text-zinc-400 font-body max-w-xl mb-12">Acesse o rider técnico completo, imagens em alta resolução, bios oficiais em 3 idiomas e logotipos para promoção de eventos.</p>
+<div class="flex flex-wrap justify-center gap-6">
+<button class="bg-primary text-black font-bold uppercase tracking-widest px-12 py-4 text-sm hover:bg-white transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined">folder_zip</span>
+                        BAIXAR EPK COMPLETO (.ZIP)
+                    </button>
+<button class="border border-primary text-primary font-bold uppercase tracking-widest px-12 py-4 text-sm hover:bg-primary/10 transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined">description</span>
+                        RIDER TÉCNICO
+                    </button>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-32 px-8 md:px-20 grid grid-cols-1 lg:grid-cols-2 gap-20 border-t border-white/5" id="booking">
+<div>
+<h3 class="text-5xl font-black font-headline uppercase mb-6">ENTRE EM CONTATO</h3>
+<div class="space-y-8 mt-12">
+<div>
+<div class="text-primary font-label text-xs uppercase tracking-widest mb-2">Management Mundial</div>
+<div class="text-2xl font-bold font-headline uppercase">AGENT_ZERO@RECORDS.COM</div>
+</div>
+<div>
+<div class="text-secondary font-label text-xs uppercase tracking-widest mb-2">Sync &amp; Licenciamento</div>
+<div class="text-2xl font-bold font-headline uppercase">OFFICE@PACHECCO.MUSIC</div>
+</div>
+<div>
+<div class="text-tertiary font-label text-xs uppercase tracking-widest mb-2">Base de Localização</div>
+<div class="text-2xl font-bold font-headline uppercase">BERLIM / SÃO PAULO</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-8 md:p-12 border-t-2 border-primary">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] uppercase tracking-widest text-zinc-500 font-label">NOME DO PROMOTOR</label>
+<input class="w-full bg-surface-container-highest border-none focus:ring-0 focus:border-b-2 border-primary text-white p-4 font-headline uppercase text-sm" placeholder="IDENTIDADE" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] uppercase tracking-widest text-zinc-500 font-label">E-MAIL DE CONTATO</label>
+<input class="w-full bg-surface-container-highest border-none focus:ring-0 focus:border-b-2 border-primary text-white p-4 font-headline uppercase text-sm" placeholder="ADDRESS@DOMAIN.COM" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] uppercase tracking-widest text-zinc-500 font-label">DETALHES DO EVENTO</label>
+<textarea class="w-full bg-surface-container-highest border-none focus:ring-0 focus:border-b-2 border-primary text-white p-4 font-headline uppercase text-sm" placeholder="CIDADE / DATA / LINEUP" rows="4"></textarea>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-black font-black uppercase tracking-[0.2em] py-5 hover:skew-x-[-2deg] transition-all">SOLICITAR BOOKING</button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-zinc-950 flex flex-col items-center gap-6 w-full px-4 py-12 border-t-2 border-cyan-400/20 shadow-[0_-10px_40px_rgba(114,220,255,0.05)]">
+<div class="flex gap-8 md:gap-12 flex-wrap justify-center">
+<a class="font-['Manrope'] text-[10px] tracking-[0.15em] uppercase text-zinc-700 hover:text-cyan-400 hover:tracking-[0.2em] transition-all" href="#">Instagram</a>
+<a class="font-['Manrope'] text-[10px] tracking-[0.15em] uppercase text-zinc-700 hover:text-cyan-400 hover:tracking-[0.2em] transition-all" href="#">Soundcloud</a>
+<a class="font-['Manrope'] text-[10px] tracking-[0.15em] uppercase text-zinc-700 hover:text-cyan-400 hover:tracking-[0.2em] transition-all" href="#">Resident Advisor</a>
+<a class="font-['Manrope'] text-[10px] tracking-[0.15em] uppercase text-zinc-700 hover:text-cyan-400 hover:tracking-[0.2em] transition-all" href="#">Spotify</a>
+</div>
+<p class="font-['Manrope'] text-[10px] tracking-[0.15em] uppercase text-zinc-500 mt-4">© 2024 PACHECCO. PROJETADO PARA O UNDERGROUND.</p>
+</footer>
+</main>
+</body></html>
